@@ -1,3 +1,4 @@
+
 """
 STEP 3: Live Webcam Emotion Detection (OpenCV + Trained CNN)
 --------------------------------------------------------------
@@ -8,10 +9,10 @@ import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
 
-# 1. Trained Model Load Karein
-print("Model load ho raha hai, kripya wait karein...")
+# 1. Load the Trained Model
+print("Loading the model, please wait...")
 model = load_model("optimal_emotion_model.h5")
-print("Model successfully load ho gaya!")
+print("Model loaded successfully!")
 
 # 2. OpenCV Face Detector (Haar Cascade)
 face_classifier = cv2.CascadeClassifier(
@@ -21,19 +22,19 @@ face_classifier = cv2.CascadeClassifier(
 # 3. Emotion Classes (FER-2013 alphabetical order — must match class_indices from training)
 emotion_labels = ["Angry", "Disgust", "Fear", "Happy", "Neutral", "Sad", "Surprise"]
 
-# 4. Webcam Start (0 = default webcam)
+# 4. Start Webcam (0 = default webcam)
 cap = cv2.VideoCapture(0)
 
 if not cap.isOpened():
-    print("Error: Webcam access nahi ho raha hai!")
+    print("Error: Unable to access the webcam!")
     exit()
 
-print("Webcam start ho gaya hai. Band karne ke liye 'q' press karein.")
+print("Webcam started successfully. Press 'q' to exit.")
 
 while True:
     ret, frame = cap.read()
     if not ret:
-        print("Frame capture nahi ho pa raha hai.")
+        print("Unable to capture the frame.")
         break
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -66,3 +67,4 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
+
